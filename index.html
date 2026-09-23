@@ -99,7 +99,7 @@ footer{margin-top:18px;border:1px solid #795d18;border-radius:16px;padding:16px;
  5 புதிர்களைத் தீர்த்து, இறுதிக் குறியீட்டை கண்டுபிடித்து, டிஜிட்டல் பூட்டைத் திறக்கவும்!</p>
  <input id="team" placeholder="உங்கள் Team பெயரை உள்ளிடவும்">
  <button onclick="startGame()">🚀 MISSION START</button>
- <p class="small">நேரம்: 30 நிமிடங்கள் • 5 புதிர்கள் • 1 இறுதி பூட்டு</p>
+ <p class="small">நேரம்: 10 நிமிடங்கள் • 5 புதிர்கள் • 1 இறுதி பூட்டு</p>
 </div>
 
 <div id="game">
@@ -111,7 +111,7 @@ footer{margin-top:18px;border:1px solid #795d18;border-radius:16px;padding:16px;
    <div class="verse">“தமிழ் தான் திறவுகோல்,<br>வகுப்பறை தான் புதிர்,<br>வெற்றி உங்கள் கையில்!”</div>
    <div class="panel" style="margin-top:14px;padding:14px">
     <div style="text-align:center">⏳ மீதமுள்ள நேரம்</div>
-    <div id="timer" class="timer">30:00</div>
+    <div id="timer" class="timer">10:00</div>
    </div>
   </section>
 
@@ -169,13 +169,13 @@ const puzzles=[
 {title:"புதிர் – இறுதி புதிர்",icon:"🧠",answer:["9732"],code:"",body:"முதல் 4 புதிர்களின் code:<br><br><b>7 – 3 – 9 – 2</b><br><br>குறிப்பு:<br><b>“மூன்றாவது முதலில், முதலாவது இரண்டாவது, இரண்டாவது மூன்றாவது, நான்காவது கடைசியில்.”</b><br><br>இறுதி sequence என்ன?"}
 ];
 
-let current=0,completed=0,codes=[],seconds=1800,deadline=0,timerId=null,teamName="";
+let current=0,completed=0,codes=[],seconds=600,deadline=0,timerId=null,teamName="";
 
 function startGame(){
  teamName=document.getElementById("team").value.trim()||"தமிழ் வீரர்கள்";
  document.getElementById("start").style.display="none";
  document.getElementById("game").style.display="block";
- current=0;completed=0;codes=[];seconds=1800;deadline=Date.now()+1800000;
+ current=0;completed=0;codes=[];seconds=1800;deadline=Date.now()+600000;
  renderPuzzles();renderCodes();updateTimer();
  clearInterval(timerId);timerId=setInterval(updateTimer,250);
  openPuzzle(0);
@@ -245,7 +245,7 @@ function unlock(){
  const v=norm(document.getElementById("final").value),msg=document.getElementById("finalMsg");
  if(v==="9732"){
   clearInterval(timerId);timerId=null;
-  const elapsed=1800-seconds,m=String(Math.floor(elapsed/60)).padStart(2,"0"),s=String(elapsed%60).padStart(2,"0");
+  const elapsed=600-seconds,m=String(Math.floor(elapsed/60)).padStart(2,"0"),s=String(elapsed%60).padStart(2,"0");
   document.getElementById("winner").textContent="🏆 TEAM: "+teamName;
   document.getElementById("timeTaken").textContent="ESCAPE TIME: "+m+":"+s;
   document.getElementById("escaped").style.display="flex";confetti();
